@@ -217,3 +217,17 @@ __marimo__/
 *.pfx
 id_rsa
 id_ed25519
+
+# Local secrets and credentials (never commit real values)
+openclaw.env
+*.secret
+*.secret.*
+secrets.*
+credentials.json
+credentials.*.json
+.npmrc.local
+*.local.json
+local.settings.json
+
+# OpenClaw live config (contains real API keys — never commit)
+openclaw.json
