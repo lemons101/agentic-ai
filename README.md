@@ -181,6 +181,33 @@
 
 > 完整部署步骤见 [openclaw-infra/README.md](openclaw-infra/README.md)
 
+## 环境变量配置
+
+所有敏感凭据通过环境变量注入，**不要将真实 Key 写入任何配置文件并提交到 Git**。
+
+1. 复制模板文件：
+   ```bash
+   cp openclaw-infra/configs/.env.example /opt/openclaw.env
+   chmod 600 /opt/openclaw.env
+   ```
+
+2. 编辑 `/opt/openclaw.env`，填入真实值：
+
+   | 变量名 | 用途 |
+   | --- | --- |
+   | `OPENAI_API_KEY` | 大模型 API Key（DeepSeek / 通义 / Kimi / OpenAI 等） |
+   | `OPENAI_BASE_URL` | 对应提供商的 Base URL |
+   | `VOLCENGINE_CODING_API_KEY` | 火山引擎 Coding Plan API Key |
+   | `VOLCENGINE_EMBEDDING_API_KEY` | 火山引擎 Embedding API Key |
+   | `HOTAI_API_KEY` | Hotai2API 代理 Key |
+   | `OPENCLAW_GATEWAY_TOKEN` | OpenClaw Gateway 认证 Token |
+   | `WECOM_BOT_SECRET` | 企业微信机器人 Secret |
+   | `FEISHU_APP_SECRET` | 飞书应用 Secret |
+
+3. 在 `openclaw.json` 中，将各 `apiKey` / `secret` / `token` 字段替换为对应占位符（`<YOUR_...>`），并通过 systemd EnvironmentFile 或启动脚本加载 `/opt/openclaw.env`。
+
+> 完整的环境变量模板见 [openclaw-infra/configs/.env.example](openclaw-infra/configs/.env.example)
+
 ## 安全要点
 
 > ⚠️ 部署完成后，务必对照 [security-checklist.md](openclaw-infra/checklists/security-checklist.md) 逐项检查
