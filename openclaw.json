@@ -18,7 +18,7 @@
     "providers": {
       "volcengine": {
         "baseUrl": "https://ark.cn-beijing.volces.com/api/coding/v3",
-        "apiKey": "sk-e3961d16f843555f831556184f9751b3fe06a823b86b8d33f44829e81155555",
+        "apiKey": "<YOUR_VOLCENGINE_CODING_API_KEY>",
         "api": "openai-completions",
         "models": [
           {
